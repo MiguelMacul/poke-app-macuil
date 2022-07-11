@@ -16,7 +16,9 @@ class PokemonBloc extends Bloc<PokemonEvent, PokemonState> {
   final _repositorio = Repository();
   PokemonBloc() : super(HomeInitial()) {
     on<GetConsultarApis>(((event, emit) async {
-      emit(HomeInitial(pokemons: await getPokemons(limiteMaximo: 150)));
+      emit(HomeInitial(
+          pokemons:
+              await getPokemons(limiteMaximo: event.limiteMaximo ?? 150)));
     }));
     on<ActualizarEstadoItem>(((event, emit) {
       state.selected![event.index] = event.estado;
@@ -30,13 +32,14 @@ class PokemonBloc extends Bloc<PokemonEvent, PokemonState> {
   }
 
   Future<List<PokemonModel>> getPokemons({int? limiteMaximo}) async {
-    var rutasPokemon = await _repositorio.getPagePokemon(maximoLimite: 150);
+    var rutasPokemon =
+        await _repositorio.getPagePokemon(maximoLimite: limiteMaximo);
     List<PokemonModel> pokemons = [];
     List<bool> selected = [];
 
     var pokemonEnDatabase = await _repositorio.obtenerPokemon();
 
-    if (pokemonEnDatabase.length == rutasPokemon.results.length) {
+    if (pokemonEnDatabase.length == limiteMaximo) {
       var j = 0;
       var bandera2 = true;
       do {

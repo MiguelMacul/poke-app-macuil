@@ -20,7 +20,8 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     BlocProvider.of<PokemonBloc>(context, listen: false)
-        .add(GetConsultarApis());
+        .add(GetConsultarApis(limiteMaximo: 50));
+
     BlocProvider.of<TeamPokemonBloc>(context, listen: false)
         .add(InicializarEquiposPokemonEvent());
   }
@@ -68,11 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 color: Colors.black,
                                 size: MediaQuery.of(context).size.width * 0.1),
                             onPressed: () async {
-                              if (state2.equipos != null) {
-                                if (state2.equipos!.isNotEmpty) {
-                                  Navigator.pushNamed(context, '/team_pokemon');
-                                }
-                              }
+                              Navigator.pushNamed(context, '/team_pokemon');
                             },
                           ),
                         ),

@@ -267,7 +267,7 @@ class TabViewInfoPokemon extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    width: MediaQuery.of(context).size.width * 0.6,
+                    width: MediaQuery.of(context).size.width * 0.55,
                     height: MediaQuery.of(context).size.height * 0.005,
                     child: LinearProgressIndicator(
                       value: (pokemon.stats![index].baseStat!) / 100,

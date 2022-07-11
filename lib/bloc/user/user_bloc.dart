@@ -18,7 +18,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     });
     on<ActualizarUsuario>((event, emit) async {
       var salida = await _repositorio.getUsuario();
-      print("mike ${salida}");
+
       if (salida == null) {
         emit(UserInitial(user: null, existe: false));
       } else {

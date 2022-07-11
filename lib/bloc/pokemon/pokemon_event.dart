@@ -7,7 +7,10 @@ class GetPokemons extends PokemonEvent {
   GetPokemons({required this.pokemons});
 }
 
-class GetConsultarApis extends PokemonEvent {}
+class GetConsultarApis extends PokemonEvent {
+  final int? limiteMaximo;
+  GetConsultarApis({this.limiteMaximo});
+}
 
 class ActualizarEstadoItem extends PokemonEvent {
   final int index;

@@ -43,6 +43,7 @@ class VentanaModalTeamPokemon extends StatelessWidget {
                 onPressed: () {
                   BlocProvider.of<PokemonBloc>(context)
                       .add(InicializarPokemonEvent());
+
                   BlocProvider.of<TeamPokemonBloc>(context)
                       .add(FinalizarProcesoCrearTeam(
                     esActivoFinalizarTeam: false,
@@ -51,7 +52,8 @@ class VentanaModalTeamPokemon extends StatelessWidget {
                         .state
                         .pokemons!,
                   ));
-
+                  BlocProvider.of<TeamPokemonBloc>(context, listen: false)
+                      .add(InicializarEquiposPokemonEvent());
                   Navigator.of(context).pop();
                 },
                 icon: const Icon(
